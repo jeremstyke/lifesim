@@ -2,7 +2,7 @@
 
 **Live a whole life in a few minutes.** Grow up, study, fall in love, build a career or a criminal empire, and see where your choices take you.
 
-👉 **Play now on Telegram: [@LsimgameBot](https://t.me/LsimgameBot)**
+👉 **Play now on Telegram: [@LsimgameBot](https://t.me/LsimgameBot/Play?startapp=src_github)**
 
 This repository contains the Android version of Life Sim, the life simulator game that already runs as a Telegram Mini App.
 
@@ -26,13 +26,14 @@ This repository contains the Android version of Life Sim, the life simulator gam
 
 ## Status
 
-🚧 **In development.** The Telegram version is live and playable today: [@LsimgameBot](https://t.me/LsimgameBot).
+🚧 **In development.** The Telegram version is live and playable today: [@LsimgameBot](https://t.me/LsimgameBot/Play?startapp=src_github).
 
 ## Links
 
-- 🎮 Play on Telegram: [@LsimgameBot](https://t.me/LsimgameBot)
-- 🤖 ChatPal, your AI best friend: [@mybestfriend_ai_en_bot](https://t.me/mybestfriend_ai_en_bot)
-- 👤 Made by Jeremstyke: [t.me/jeremstyke](https://t.me/jeremstyke)
+- 🎮 Play on Telegram: [@LsimgameBot](https://t.me/LsimgameBot/Play?startapp=src_github)
+- 🤖 ChatPal, your AI best friend: [@mybestfriend_ai_en_bot](https://t.me/mybestfriend_ai_en_bot?start=src_github)
+- 📢 News and updates: [Jeremstyke channel](https://t.me/jeremstyke)
+- 👤 Made by Jeremstyke
 
 ---
 
