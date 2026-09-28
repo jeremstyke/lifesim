@@ -1,10 +1,8 @@
-# Life Sim for Android 🎂
+# Life Sim 🎂
 
-**Live a whole life in a few minutes.** Grow up, study, fall in love, build a career or a criminal empire, and see where your choices take you.
+**Live a whole life in a few minutes, right inside Telegram.** Grow up, study, fall in love, build a career or a criminal empire, and see where your choices take you.
 
 👉 **Play now on Telegram: [@LsimgameBot](https://t.me/LsimgameBot/Play?startapp=src_github)**
-
-This repository contains the Android version of Life Sim, the life simulator game that already runs as a Telegram Mini App.
 
 ## Features
 
@@ -18,15 +16,10 @@ This repository contains the Android version of Life Sim, the life simulator gam
 
 ## How it is built
 
-- **App**: [Capacitor](https://capacitorjs.com) wrapper of the Life Sim web game
-- **Ads**: Google AdMob (rewarded videos and interstitials)
-- **Purchases**: Google Play Billing (VIP and in-game offers)
-- **Backend**: the same server as the Telegram version (Railway + Supabase)
-- **Builds**: GitHub Actions compiles the signed Android App Bundle (`.aab`) on every push
-
-## Status
-
-🚧 **In development.** The Telegram version is live and playable today: [@LsimgameBot](https://t.me/LsimgameBot/Play?startapp=src_github).
+- **Telegram Mini App**: the game opens instantly inside Telegram, nothing to install
+- **Claude AI**: writes the stories and events of every life
+- **Backend**: Railway + Supabase
+- **Payments**: Telegram Stars
 
 ## Links
 
