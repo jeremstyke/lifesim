@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Life Sim: бесплатный симулятор жизни в Telegram | Проживи целую жизнь</title>
+<meta name="description" content="Life Sim: бесплатная игра-симулятор жизни в Telegram. Расти, учись, влюбляйся, строй карьеру или преступную империю, выполняй жизненные цели и получи титул своей жизни. Без скачивания.">
+<meta name="keywords" content="симулятор жизни, игра симулятор жизни, life sim, игра в Telegram, мини-приложение Telegram, текстовая игра, выбери свой путь, игра с ИИ, бесплатная игра">
+<meta name="author" content="Jeremstyke">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#2A1450">
+<link rel="canonical" href="https://jeremstyke.github.io/lifesim/ru/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Life Sim">
+<meta property="og:url" content="https://jeremstyke.github.io/lifesim/ru/">
+<meta property="og:title" content="Life Sim: проживи целую жизнь за несколько минут">
+<meta property="og:description" content="Бесплатный симулятор жизни прямо в Telegram. Каждый год новая история, каждый выбор меняет твою жизнь.">
+<meta property="og:image" content="https://jeremstyke.github.io/lifesim/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Life Sim: проживи целую жизнь за несколько минут, бесплатный симулятор жизни в Telegram">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Life Sim: проживи целую жизнь за несколько минут">
+<meta name="twitter:description" content="Бесплатный симулятор жизни прямо в Telegram. Каждый выбор меняет твою жизнь.">
+<meta name="twitter:image" content="https://jeremstyke.github.io/lifesim/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎂</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --plum: #2A1450;
+    --violet: #6C3FD1;
+    --lilac: #EFE7FF;
+    --gold: #FFB21E;
+    --milk: #FBF8FF;
+    --ink: #1E1235;
+    --soft: #6B5E86;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--milk); color: var(--ink); font: 400 17px/1.6 'Nunito', system-ui, sans-serif; }
+  a { color: inherit; }
+  h1, h2, h3 { font-family: 'Fredoka', 'Nunito', sans-serif; line-height: 1.1; margin: 0; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+  :focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; border-radius: 8px; }
+
+  /* Top bar */
+  .top { display: flex; align-items: center; justify-content: space-between; padding: 20px 0; }
+  .brand { display: flex; align-items: center; gap: 10px; font-family: 'Fredoka', sans-serif; font-weight: 700; font-size: 22px; text-decoration: none; }
+  .brand span { font-size: 28px; }
+  .top nav a { margin-left: 22px; text-decoration: none; font-weight: 600; color: var(--soft); }
+  .top nav a:hover { color: var(--violet); }
+
+  /* Hero */
+  .hero { display: grid; grid-template-columns: 1.1fr .9fr; gap: 48px; align-items: center; padding: 40px 24px 72px; }
+  .hero h1 { font-size: clamp(40px, 6vw, 68px); font-weight: 700; color: var(--plum); }
+  .hero p { font-size: 20px; color: var(--soft); max-width: 30em; margin: 20px 0 32px; }
+  .play { display: inline-flex; align-items: center; gap: 10px; background: var(--violet); color: #fff; text-decoration: none; font-weight: 800; font-size: 18px; padding: 16px 28px; border-radius: 999px; box-shadow: 0 10px 28px -10px var(--violet); transition: transform .15s; }
+  .play:hover { transform: translateY(-2px); }
+  .play svg { width: 22px; height: 22px; }
+  .note { display: block; margin-top: 14px; font-size: 14px; color: var(--soft); }
+
+  /* Phone mockup (drawn in CSS, like the real game screen) */
+  .phone { justify-self: center; width: 290px; background: #fff; border-radius: 40px; padding: 18px 16px 16px; border: 10px solid var(--plum); box-shadow: 0 30px 60px -30px rgba(42,20,80,.55); }
+  .ph-top { display: flex; align-items: center; gap: 10px; }
+  .ph-av { width: 44px; height: 44px; border-radius: 50%; background: var(--lilac); display: grid; place-items: center; font-size: 26px; }
+  .ph-name { font-weight: 800; font-size: 15px; }
+  .ph-age { font-size: 13px; color: var(--soft); }
+  .ph-money { margin-left: auto; font-weight: 800; color: #1a9e57; font-size: 14px; }
+  .ph-ev { margin: 14px 0; background: var(--lilac); border-radius: 16px; padding: 12px; font-size: 13px; line-height: 1.45; border-left: 4px solid var(--violet); }
+  .ph-ev b { display: block; margin-bottom: 4px; }
+  .ph-ch { display: block; width: 100%; border: 2px solid var(--violet); background: #fff; border-radius: 12px; padding: 8px; margin-top: 6px; font: 700 12px 'Nunito', sans-serif; color: var(--plum); }
+  .ph-g { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 12px; margin-top: 14px; font-size: 11px; font-weight: 700; }
+  .ph-bar { height: 6px; border-radius: 3px; background: #eee; overflow: hidden; margin-top: 2px; }
+  .ph-bar i { display: block; height: 100%; border-radius: 3px; }
+  .ph-dock { display: flex; justify-content: space-around; align-items: center; margin-top: 14px; font-size: 20px; }
+  .ph-age-btn { width: 54px; height: 54px; border-radius: 50%; background: var(--gold); display: grid; place-items: center; font-size: 26px; box-shadow: 0 6px 16px -6px var(--gold); }
+
+  /* A life, age by age: the page's signature element */
+  .life { background: var(--plum); color: #fff; padding: 72px 0; }
+  .life h2 { font-size: clamp(30px, 4vw, 44px); }
+  .life .lead { color: #CFC2EE; max-width: 34em; margin: 12px 0 40px; }
+  .track { position: relative; display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; }
+  .track::before { content: ''; position: absolute; left: 4%; right: 4%; top: 46px; height: 4px; border-radius: 2px; background: linear-gradient(90deg, var(--gold), var(--violet)); }
+  .stop { position: relative; text-align: center; }
+  .stop .emo { width: 92px; height: 92px; margin: 0 auto; border-radius: 50%; background: #3C2170; border: 4px solid var(--gold); display: grid; place-items: center; font-size: 42px; position: relative; }
+  .stop .yrs { font-family: 'Fredoka', sans-serif; font-weight: 700; font-size: 26px; color: var(--gold); margin-top: 12px; }
+  .stop p { font-size: 14px; color: #CFC2EE; margin: 4px 0 0; }
+  @media (prefers-reduced-motion: no-preference) {
+    .stop { opacity: 0; transform: translateY(14px); animation: grow .5s ease forwards; }
+    .stop:nth-child(2) { animation-delay: .15s; } .stop:nth-child(3) { animation-delay: .3s; }
+    .stop:nth-child(4) { animation-delay: .45s; } .stop:nth-child(5) { animation-delay: .6s; } .stop:nth-child(6) { animation-delay: .75s; }
+    @keyframes grow { to { opacity: 1; transform: none; } }
+  }
+
+  /* Features */
+  .feats { padding: 80px 24px 40px; }
+  .feats h2 { font-size: clamp(30px, 4vw, 44px); color: var(--plum); max-width: 16em; }
+  .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 36px 56px; margin-top: 44px; }
+  .feat { display: grid; grid-template-columns: 56px 1fr; gap: 16px; }
+  .feat .ic { font-size: 40px; line-height: 1; }
+  .feat h3 { font-size: 22px; color: var(--plum); }
+  .feat p { margin: 6px 0 0; color: var(--soft); }
+
+  /* End-of-life titles */
+  .titles { padding: 40px 24px 80px; }
+  .titles h2 { font-size: clamp(28px, 3.6vw, 40px); color: var(--plum); }
+  .titles .lead { color: var(--soft); margin: 10px 0 28px; max-width: 34em; }
+  .chips { display: flex; flex-wrap: wrap; gap: 10px; }
+  .chip { padding: 10px 16px; border-radius: 999px; border: 2px solid var(--gold); background: #fff; font-weight: 800; font-size: 15px; }
+  .chip.locked { border-style: dashed; border-color: #cbbfe3; color: #a597c2; background: transparent; }
+
+  /* Final call */
+  .cta { text-align: center; padding: 72px 24px; background: var(--lilac); }
+  .cta h2 { font-size: clamp(30px, 4vw, 46px); color: var(--plum); }
+  .cta p { color: var(--soft); margin: 12px auto 30px; max-width: 30em; }
+
+  /* Cross-link */
+  .also { padding: 64px 24px; }
+  .card { display: grid; grid-template-columns: auto 1fr auto; gap: 22px; align-items: center; border: 2px solid var(--lilac); border-radius: 24px; padding: 26px; background: #fff; }
+  .card .big { font-size: 52px; }
+  .card h3 { font-size: 24px; }
+  .card p { margin: 4px 0 0; color: var(--soft); }
+  .card a.go { text-decoration: none; font-weight: 800; background: #2A7BE4; color: #fff; padding: 12px 20px; border-radius: 999px; white-space: nowrap; }
+
+
+  .faq { padding: 40px 24px 72px; }
+  .faq h2 { font-size: clamp(28px, 3.6vw, 40px); color: var(--plum); margin-bottom: 20px; }
+  .faq details { border-bottom: 1px solid #e6def5; padding: 16px 0; }
+  .faq summary { cursor: pointer; font-weight: 800; font-size: 18px; color: var(--plum); }
+  .faq p { margin: 10px 0 0; color: var(--soft); max-width: 44em; }
+  footer { padding: 28px 0 40px; color: var(--soft); font-size: 14px; border-top: 1px solid #e6def5; }
+  footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 24px; justify-content: space-between; }
+  footer a { text-decoration: none; font-weight: 700; }
+  footer .langs { width: 100%; display: flex; flex-wrap: wrap; gap: 6px 14px; }
+  footer .langs strong { color: inherit; }
+  footer .links { display: flex; flex-wrap: wrap; gap: 8px 20px; }
+
+  @media (max-width: 820px) {
+    .hero { grid-template-columns: 1fr; padding-top: 16px; }
+    .top nav { display: none; }
+    .track { grid-template-columns: repeat(3, 1fr); row-gap: 32px; }
+    .track::before { display: none; }
+    .grid { grid-template-columns: 1fr; }
+    .card { grid-template-columns: 1fr; text-align: center; }
+    .card .go { justify-self: center; }
+  }
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "VideoGame", "name": "Life Sim", "url": "https://jeremstyke.github.io/lifesim/ru/", "image": "https://jeremstyke.github.io/lifesim/og.png", "description": "Бесплатный симулятор жизни в Telegram: проживи целую жизнь год за годом, делай выбор, выполняй жизненные цели и получи титул своей жизни.", "genre": ["Life simulation", "Text-based game", "Simulation"], "gamePlatform": ["Telegram", "iOS", "Android", "Windows", "macOS", "Web"], "applicationCategory": "GameApplication", "operatingSystem": "Telegram", "inLanguage": ["en", "fr", "es", "pt", "de", "it", "ru", "tr", "ar", "hi", "id"], "playMode": "SinglePlayer", "isAccessibleForFree": true, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "url": "https://t.me/LsimgameBot/Play?startapp=src_site"}, "author": {"@type": "Person", "name": "Jeremstyke", "url": "https://github.com/jeremstyke", "sameAs": ["https://t.me/jeremstyke", "https://github.com/jeremstyke"]}, "sameAs": ["https://t.me/LsimgameBot", "https://github.com/jeremstyke/lifesim"]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Life Sim бесплатный?", "acceptedAnswer": {"@type": "Answer", "text": "Да. В Life Sim можно играть бесплатно прямо в Telegram. Необязательный VIP-пропуск и несколько бонусов покупаются за Telegram Stars, но прожить целую жизнь можно, ничего не платя."}}, {"@type": "Question", "name": "Нужно ли скачивать приложение?", "acceptedAnswer": {"@type": "Answer", "text": "Нет. Life Sim это мини-приложение Telegram: оно мгновенно открывается в Telegram на iPhone, Android, компьютере и в браузере. Нужен только аккаунт Telegram."}}, {"@type": "Question", "name": "Сколько длится одна жизнь?", "acceptedAnswer": {"@type": "Answer", "text": "Несколько минут, если торопиться, и гораздо дольше, если продумывать каждую деталь. Можно начать младенцем или сразу перейти к 6 или 18 годам."}}, {"@type": "Question", "name": "Какие языки доступны?", "acceptedAnswer": {"@type": "Answer", "text": "Английский, французский, испанский, португальский, немецкий, итальянский, русский, турецкий, арабский, хинди и индонезийский."}}, {"@type": "Question", "name": "Что происходит, когда мой персонаж умирает?", "acceptedAnswer": {"@type": "Answer", "text": "Твоя жизнь получает титул и историю, которой можно поделиться. Затем можно начать новую жизнь или продолжить историю за одного из своих детей."}}, {"@type": "Question", "name": "Кто пишет истории?", "acceptedAnswer": {"@type": "Answer", "text": "Каждый год твоей жизни пишет ИИ (Claude) с учётом возраста, работы, отношений и прошлых решений, поэтому двух одинаковых жизней не бывает."}}]}</script>
+<meta property="og:locale" content="ru_RU">
+<link rel="alternate" hreflang="en" href="https://jeremstyke.github.io/lifesim/">
+<link rel="alternate" hreflang="fr" href="https://jeremstyke.github.io/lifesim/fr/">
+<link rel="alternate" hreflang="es" href="https://jeremstyke.github.io/lifesim/es/">
+<link rel="alternate" hreflang="pt" href="https://jeremstyke.github.io/lifesim/pt/">
+<link rel="alternate" hreflang="ru" href="https://jeremstyke.github.io/lifesim/ru/">
+<link rel="alternate" hreflang="x-default" href="https://jeremstyke.github.io/lifesim/">
+</head>
+<body>
+<header class="wrap top">
+  <a class="brand" href="#"><span>🎂</span> Life Sim</a>
+  <nav>
+    <a href="#life">Как это работает</a>
+    <a href="#features">Возможности</a>
+    <a href="#faq">Вопросы</a>
+    <a href="https://jeremstyke.github.io/chatpal/ru/">ChatPal</a>
+  </nav>
+</header>
+
+<main>
+  <section class="wrap hero">
+    <div>
+      <h1>Проживи целую жизнь за несколько минут.</h1>
+      <p>Расти, учись, влюбляйся, строй карьеру или преступную империю. Каждый год приносит новую историю, и каждый выбор меняет то, чем закончится твоя жизнь.</p>
+      <a class="play" href="https://t.me/LsimgameBot/Play?startapp=src_site">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.8 15.2 9.6 19c.4 0 .6-.2.8-.4l1.9-1.8 4 2.9c.7.4 1.3.2 1.5-.7l2.7-12.6c.3-1.1-.4-1.6-1.1-1.3L3.6 10.9c-1.1.4-1 1-.2 1.3l4 1.2 9.3-5.9c.4-.3.8-.1.5.2l-7.4 7.5z"/></svg>
+        Играть бесплатно в Telegram
+      </a>
+      <span class="note">Открывается мгновенно прямо в Telegram. Ничего не нужно устанавливать.</span>
+    </div>
+
+    <div class="phone" role="img" aria-label="Экран игры Life Sim: жизненное событие с вариантами выбора, четыре шкалы и кнопка «Стать старше»">
+      <div class="ph-top">
+        <div class="ph-av">🧑</div>
+        <div><div class="ph-name">Alex Martin</div><div class="ph-age">18 лет</div></div>
+        <div class="ph-money">$2,450</div>
+      </div>
+      <div class="ph-ev">
+        <b>🎓 18 лет</b>
+        Лучший друг предлагает вместе открыть фудтрак вместо поступления в университет.
+        <span class="ph-ch">Открыть фудтрак</span>
+        <span class="ph-ch">Поступить в университет</span>
+      </div>
+      <div class="ph-g">
+        <div>😊 Счастье<div class="ph-bar"><i style="width:78%;background:#22b35e"></i></div></div>
+        <div>❤️ Здоровье<div class="ph-bar"><i style="width:91%;background:#22b35e"></i></div></div>
+        <div>🧠 Интеллект<div class="ph-bar"><i style="width:54%;background:#f29a1d"></i></div></div>
+        <div>✨ Внешность<div class="ph-bar"><i style="width:26%;background:#e5484d"></i></div></div>
+      </div>
+      <div class="ph-dock"><span>🧍</span><span>💞</span><span class="ph-age-btn">🎂</span><span>🎯</span><span>☰</span></div>
+    </div>
+  </section>
+
+  <section class="life" id="life">
+    <div class="wrap">
+      <h2>Одно касание, один год.</h2>
+      <p class="lead">Нажми 🎂 «Стать старше», и начнётся новый год твоей жизни с историей, написанной специально для тебя. Вот куда может привести жизнь.</p>
+      <div class="track">
+        <div class="stop"><div class="emo">👶</div><div class="yrs">0</div><p>Ты рождаешься. Семья, внешность и удача выпадают случайно.</p></div>
+        <div class="stop"><div class="emo">🧒</div><div class="yrs">6</div><p>Начинается школа: оценки, друзья, первые хулиганы.</p></div>
+        <div class="stop"><div class="emo">🧑</div><div class="yrs">18</div><p>Взрослая жизнь: учёба, работа или рискованный путь.</p></div>
+        <div class="stop"><div class="emo">💼</div><div class="yrs">30</div><p>Карьера, любовь, дом, может быть, дети.</p></div>
+        <div class="stop"><div class="emo">👨</div><div class="yrs">50</div><p>Богатство, скандалы, второй шанс.</p></div>
+        <div class="stop"><div class="emo">👴</div><div class="yrs">90</div><p>Твоё наследие и титул, который заслужила твоя жизнь.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap feats" id="features">
+    <h2>Каждая жизнь уникальна. В этом весь смысл.</h2>
+    <div class="grid">
+      <div class="feat"><div class="ic">🎯</div><div><h3>Жизненные цели</h3><p>Каждая жизнь даёт 3 испытания, например стать миллионером до 50 лет или объехать весь мир. Выполни их и получи до 50 000 $.</p></div></div>
+      <div class="feat"><div class="ic">📖</div><div><h3>Истории, которые тебя помнят</h3><p>Игра помнит, что ты сделал. Старый сообщник, забытый долг или первая любовь могут вернуться спустя годы.</p></div></div>
+      <div class="feat"><div class="ic">✨</div><div><h3>Редкие события</h3><p>Примерно один год из двадцати приносит что-то огромное: состояние, внезапную славу или катастрофу, которая меняет всё.</p></div></div>
+      <div class="feat"><div class="ic">✍️</div><div><h3>Придумай свой ход</h3><p>Не нравятся варианты? Напиши, что хочешь сделать, и история подстроится.</p></div></div>
+      <div class="feat"><div class="ic">💼</div><div><h3>Целая жизнь под твоим управлением</h3><p>Учёба, работа, любовь, дети, недвижимость, инвестиции, преступления и тюрьма. Следи за своими четырьмя шкалами на протяжении всего пути.</p></div></div>
+      <div class="feat"><div class="ic">🌍</div><div><h3>11 языков</h3><p>Английский, французский, испанский, португальский, немецкий, итальянский, русский, турецкий, арабский, хинди и индонезийский.</p></div></div>
+    </div>
+  </section>
+
+  <section class="wrap titles">
+    <h2>Какой запомнят твою жизнь?</h2>
+    <p class="lead">Когда жизнь заканчивается, она получает титул. Одни получить легко. Другие требуют совершенно особенной жизни.</p>
+    <div class="chips">
+      <span class="chip">👑 Крёстный отец</span>
+      <span class="chip">💎 Магнат</span>
+      <span class="chip">💰 Миллионер</span>
+      <span class="chip">🎂 Живая легенда</span>
+      <span class="chip">👨‍👩‍👧‍👦 Опора семьи</span>
+      <span class="chip">🧠 Гений</span>
+      <span class="chip">✨ Икона красоты</span>
+      <span class="chip">🌍 Путешественник</span>
+      <span class="chip">🕶️ Преступник</span>
+      <span class="chip">⛓️ Умер за решёткой</span>
+      <span class="chip">😊 Счастливая душа</span>
+      <span class="chip locked">🔒 ...и другие, которые ещё предстоит открыть</span>
+    </div>
+  </section>
+
+  <section class="wrap faq" id="faq">
+    <h2>Частые вопросы</h2>
+    <details><summary>Life Sim бесплатный?</summary><p>Да. В Life Sim можно играть бесплатно прямо в Telegram. Необязательный VIP-пропуск и несколько бонусов покупаются за Telegram Stars, но прожить целую жизнь можно, ничего не платя.</p></details>
+    <details><summary>Нужно ли скачивать приложение?</summary><p>Нет. Life Sim это мини-приложение Telegram: оно мгновенно открывается в Telegram на iPhone, Android, компьютере и в браузере. Нужен только аккаунт Telegram.</p></details>
+    <details><summary>Сколько длится одна жизнь?</summary><p>Несколько минут, если торопиться, и гораздо дольше, если продумывать каждую деталь. Можно начать младенцем или сразу перейти к 6 или 18 годам.</p></details>
+    <details><summary>Какие языки доступны?</summary><p>Английский, французский, испанский, португальский, немецкий, итальянский, русский, турецкий, арабский, хинди и индонезийский.</p></details>
+    <details><summary>Что происходит, когда мой персонаж умирает?</summary><p>Твоя жизнь получает титул и историю, которой можно поделиться. Затем можно начать новую жизнь или продолжить историю за одного из своих детей.</p></details>
+    <details><summary>Кто пишет истории?</summary><p>Каждый год твоей жизни пишет ИИ (Claude) с учётом возраста, работы, отношений и прошлых решений, поэтому двух одинаковых жизней не бывает.</p></details>
+  </section>
+
+  <section class="cta">
+    <h2>Твоя следующая жизнь начинается сейчас.</h2>
+    <p>Бесплатно, прямо в Telegram. Начни младенцем или сразу с 18 лет.</p>
+    <a class="play" href="https://t.me/LsimgameBot/Play?startapp=src_site">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.8 15.2 9.6 19c.4 0 .6-.2.8-.4l1.9-1.8 4 2.9c.7.4 1.3.2 1.5-.7l2.7-12.6c.3-1.1-.4-1.6-1.1-1.3L3.6 10.9c-1.1.4-1 1-.2 1.3l4 1.2 9.3-5.9c.4-.3.8-.1.5.2l-7.4 7.5z"/></svg>
+      Играть в Life Sim
+    </a>
+  </section>
+
+  <section class="wrap also">
+    <div class="card">
+      <div class="big">🤖</div>
+      <div><h3>Познакомься с ChatPal, твоим лучшим другом-ИИ</h3><p>Общайся когда угодно, на своём языке. Он помнит, что для тебя важно, и может проводить ежедневную викторину в твоей группе.</p></div>
+      <a class="go" href="https://jeremstyke.github.io/chatpal/ru/">Узнать о ChatPal</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Сделано Jeremstyke</span>
+    <span class="langs">🌐 <a href="https://jeremstyke.github.io/lifesim/" hreflang="en" lang="en">English</a> <a href="https://jeremstyke.github.io/lifesim/fr/" hreflang="fr" lang="fr">Français</a> <a href="https://jeremstyke.github.io/lifesim/es/" hreflang="es" lang="es">Español</a> <a href="https://jeremstyke.github.io/lifesim/pt/" hreflang="pt" lang="pt">Português</a> <strong>Русский</strong></span>
+    <span class="links">
+      <a href="https://t.me/LsimgameBot/Play?startapp=src_site">Играть в Life Sim</a>
+      <a href="https://jeremstyke.github.io/chatpal/ru/">ChatPal</a>
+      <a href="https://t.me/jeremstyke">Канал в Telegram</a>
+      <a href="https://github.com/jeremstyke/lifesim">GitHub</a>
+    </span>
+  </div>
+</footer>
+</body>
+</html>
