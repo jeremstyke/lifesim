@@ -7,11 +7,11 @@
 Grow up, study, fall in love, build a career or a criminal empire.<br>
 Every year brings a new story, and every choice changes where your life ends up.
 
-[![Play on Telegram](https://img.shields.io/badge/Play%20on-Telegram-26A5E4?style=for-the-badge&logo=telegram&logoColor=white)](https://t.me/LsimgameBot/Play?startapp=src_github)
+[![Play on Telegram](https://img.shields.io/badge/Play%20on-Telegram-26A5E4?style=for-the-badge&logo=telegram&logoColor=white)](https://t.me/LsimgameBot?start=src_github)
 [![Website](https://img.shields.io/badge/Website-Life%20Sim-6C3FD1?style=for-the-badge)](https://jeremstyke.github.io/lifesim/)
 [![Languages](https://img.shields.io/badge/Languages-11-FFB21E?style=for-the-badge)](#-languages)
 
-**[▶️ Play now](https://t.me/LsimgameBot/Play?startapp=src_github)** &nbsp;&nbsp; **[🌐 Website](https://jeremstyke.github.io/lifesim/)** &nbsp;&nbsp; **[🤖 ChatPal](https://github.com/jeremstyke/chatpal)**
+**[▶️ Play now](https://t.me/LsimgameBot?start=src_github)** &nbsp;&nbsp; **[🌐 Website](https://jeremstyke.github.io/lifesim/)** &nbsp;&nbsp; **[🤖 ChatPal](https://github.com/jeremstyke/chatpal)**
 
 </div>
 
