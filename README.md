@@ -56,6 +56,7 @@ English · French · Spanish · Portuguese · German · Italian · Russian · Tu
 ## 🔗 More from Jeremstyke
 
 - 🤖 **[ChatPal](https://github.com/jeremstyke/chatpal)**: your AI best friend on Telegram ([website](https://jeremstyke.github.io/chatpal/))
+- 👥 **[ChatPal Hangout](https://t.me/chatpal_hangout)**: the official group, hosted live by ChatPal
 - 📢 **[Jeremstyke on Telegram](https://t.me/jeremstyke)**: news and updates
 
 ---
