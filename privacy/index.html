@@ -11,41 +11,81 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
 <style>
+  :root { --c: #6C3FD1; --dark: #2A1450; --tint: #F3EDFF; --acc: #FFB21E; --ink: #1c1733; --soft: #5f5a78; --line: #ebe7f3; }
   * { box-sizing: border-box; }
-  body { margin: 0; font: 400 18px/1.7 'Nunito', system-ui, sans-serif; color: #1c1733; background: #fff; }
-  .wrap { max-width: 720px; margin: 0 auto; padding: 32px 24px 64px; }
-  .crumbs { font-size: 14px; color: #6b6585; margin-bottom: 28px; }
-  .crumbs a { color: inherit; }
-  h1 { font-size: clamp(32px, 5vw, 46px); line-height: 1.12; margin: 0 0 16px; font-weight: 900; }
-  h2 { font-size: 27px; line-height: 1.2; margin: 44px 0 10px; font-weight: 900; }
-  h3 { font-size: 20px; margin: 26px 0 6px; }
-  .intro { font-size: 20px; color: #4c4666; }
-  a { color: #5a33c2; }
-  table { width: 100%; border-collapse: collapse; font-size: 16px; margin: 16px 0; }
-  th, td { text-align: left; padding: 10px 8px; border-bottom: 1px solid #ece8f5; vertical-align: top; }
-  th { font-size: 14px; color: #6b6585; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; font: 400 17.5px/1.7 'Nunito', system-ui, sans-serif; color: var(--ink); background: #fff; }
+  a { color: var(--c); }
+  :focus-visible { outline: 3px solid var(--acc); outline-offset: 3px; border-radius: 6px; }
+  .bar { position: sticky; top: 0; z-index: 5; background: rgba(255,255,255,.92); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+  .bar .in { max-width: 1080px; margin: 0 auto; padding: 12px 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  .brand { display: flex; align-items: center; gap: 8px; font-weight: 900; font-size: 19px; color: var(--dark); text-decoration: none; }
+  .brand span { font-size: 24px; }
+  .go { background: var(--c); color: #fff; text-decoration: none; font-weight: 800; font-size: 15px; padding: 9px 18px; border-radius: 999px; white-space: nowrap; }
+  .hero { background: var(--tint); }
+  .hero .in { max-width: 1080px; margin: 0 auto; padding: 44px 24px 40px; }
+  .crumbs { font-size: 14px; color: var(--soft); margin-bottom: 14px; }
+  .crumbs a { color: inherit; text-decoration: none; font-weight: 700; }
+  .crumbs a:hover { color: var(--c); }
+  h1 { font-size: clamp(32px, 5vw, 50px); line-height: 1.08; margin: 0; font-weight: 900; color: var(--dark); max-width: 18em; }
+  .intro { font-size: 19px; color: var(--soft); margin: 14px 0 0; max-width: 38em; }
+  .keys { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 28px; }
+  .key { background: #fff; border-radius: 18px; padding: 16px; font-weight: 700; font-size: 15px; line-height: 1.4; color: var(--dark); border: 1px solid var(--line); }
+  .key b { display: block; font-size: 26px; margin-bottom: 6px; }
+  .layout { max-width: 1080px; margin: 0 auto; padding: 36px 24px 72px; display: grid; grid-template-columns: 230px 1fr; gap: 56px; }
+  .toc { position: sticky; top: 76px; align-self: start; font-size: 15px; }
+  .toc p { font-weight: 900; color: var(--dark); margin: 0 0 8px; }
+  .toc a { display: block; padding: 6px 0 6px 12px; border-left: 3px solid var(--line); color: var(--soft); text-decoration: none; font-weight: 700; }
+  .toc a:hover { color: var(--c); border-left-color: var(--c); }
+  .doc { min-width: 0; max-width: 700px; }
+  .doc h2 { font-size: 26px; line-height: 1.2; margin: 40px 0 10px; font-weight: 900; color: var(--dark); scroll-margin-top: 80px; }
+  .doc h2:first-child { margin-top: 0; }
+  .doc h3 { font-size: 19px; margin: 24px 0 4px; color: var(--dark); }
+  .doc ul, .doc ol { padding-left: 22px; }
+  .doc li { margin: 8px 0; }
+  .doc li::marker { color: var(--c); font-weight: 900; }
+  .doc table { width: 100%; border-collapse: collapse; font-size: 15.5px; margin: 16px 0; }
+  .doc th, .doc td { text-align: left; padding: 11px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  .doc thead th { background: var(--tint); color: var(--dark); font-size: 14px; }
+  .doc thead th:first-child { border-radius: 10px 0 0 10px; } .doc thead th:last-child { border-radius: 0 10px 10px 0; }
   .tbl { overflow-x: auto; }
-  ol li, ul li { margin: 8px 0; }
-  .tip { background: #f5f1ff; border-radius: 16px; padding: 16px 20px; margin: 24px 0; }
-  .cta { display: inline-block; margin-top: 8px; background: var(--c, #6C3FD1); color: #fff; font-weight: 800; text-decoration: none; padding: 14px 24px; border-radius: 999px; }
-  .end { margin-top: 48px; padding-top: 24px; border-top: 1px solid #ece8f5; font-size: 16px; color: #6b6585; }
-  :focus-visible { outline: 3px solid #FFB21E; outline-offset: 3px; }
+  .tip { background: var(--tint); border-left: 4px solid var(--c); border-radius: 0 16px 16px 0; padding: 16px 20px; margin: 24px 0; }
+  .cta { display: inline-block; margin: 6px 0; background: var(--c); color: #fff; font-weight: 800; text-decoration: none; padding: 14px 26px; border-radius: 999px; box-shadow: 0 10px 24px -12px var(--c); }
+  .end { margin-top: 44px; padding: 20px 22px; background: var(--tint); border-radius: 18px; font-size: 16px; color: var(--dark); }
+  .foot { border-top: 1px solid var(--line); }
+  .foot .in { max-width: 1080px; margin: 0 auto; padding: 24px; display: flex; flex-wrap: wrap; gap: 10px 22px; font-size: 14px; color: var(--soft); }
+  .foot a { color: inherit; font-weight: 700; text-decoration: none; }
+  .foot a:hover { color: var(--c); }
+  @media (max-width: 860px) {
+    .layout { grid-template-columns: 1fr; gap: 20px; }
+    .toc { position: static; background: #faf9fd; border-radius: 16px; padding: 14px 16px; }
+    .keys { grid-template-columns: 1fr 1fr; }
+  }
 </style>
 </head>
-<body style="--c:#6C3FD1">
-<article class="wrap">
+<body>
+<header class="bar"><div class="in">
+  <a class="brand" href="https://jeremstyke.github.io/lifesim/"><span>🎂</span> Life Sim</a>
+  <a class="go" href="https://t.me/LsimgameBot/Play?startapp=src_site">Play free</a>
+</div></header>
+<div class="hero"><div class="in">
 <div class="crumbs"><a href="https://jeremstyke.github.io/">Home</a> / <a href="https://jeremstyke.github.io/lifesim/">Life Sim</a> / Privacy Policy</div>
 <h1>Life Sim Privacy Policy</h1>
 <p class="intro">Last updated: September 29, 2026</p>
+<div class="keys"><div class="key"><b>🔒</b>We never sell your data.</div><div class="key"><b>💳</b>Payments are handled by Telegram: we never see your card.</div><div class="key"><b>🤖</b>AI writes your stories from your game, nothing else.</div><div class="key"><b>🗑️</b>Ask us anytime to delete your data.</div></div>
+</div></div>
+<main class="layout">
+<nav class="toc" aria-label="On this page"><p>On this page</p><a href="#what-we-collect">What we collect</a><a href="#how-we-use-it">How we use it</a><a href="#who-we-share-it-with">Who we share it with</a><a href="#how-long-we-keep-it">How long we keep it</a><a href="#your-rights">Your rights</a><a href="#children">Children</a><a href="#changes">Changes</a></nav>
+<article class="doc">
 <p>Life Sim is made by <strong>Jeremstyke</strong>, an independent developer based in France, who is responsible for the processing of your data (the "data controller"). Contact: <a href="mailto:juryjeremy@gmail.com">juryjeremy@gmail.com</a>.</p>
-<h2>What we collect</h2>
+<h2 id="what-we-collect">What we collect</h2>
 <ul>
 <li><strong>Your Telegram profile basics</strong>: your Telegram user ID, first name, username and language, provided by Telegram when you open the game.</li>
 <li><strong>Your game</strong>: your character, their life, choices, stats, money, possessions, journal and achievements, and any action you type yourself.</li>
 <li><strong>Usage data</strong>: when you open the game, which features you use, and how you found it (for example a link from our website or an ad), to understand what works and improve the game.</li>
 <li><strong>Purchases</strong>: what you bought with Telegram Stars and when. Payments are handled by Telegram: we never see your card or bank details.</li>
 </ul>
-<h2>How we use it</h2>
+<h2 id="how-we-use-it">How we use it</h2>
 <ul>
 <li>To run the game and save your progress.</li>
 <li>To write the story of each year: your character's situation and recent choices are sent to our AI provider to generate events.</li>
@@ -53,7 +93,7 @@
 <li>To send you game messages in Telegram (reminders, weekly leaderboard, news), if you allowed the bot to message you. You can stop them at any time by blocking the bot.</li>
 <li>To measure and improve the game.</li>
 </ul>
-<h2>Who we share it with</h2>
+<h2 id="who-we-share-it-with">Who we share it with</h2>
 <p>We don't sell your data. We only use service providers that help run the game:</p>
 <ul>
 <li><strong>Anthropic</strong> (Claude AI), which generates the stories from your game situation.</li>
@@ -61,15 +101,25 @@
 <li><strong>Adsgram</strong>, the ad network that shows ads in the game. It may collect technical data about your device to show and measure ads, under its own privacy policy.</li>
 <li><strong>Telegram</strong>, which provides your profile basics and handles payments, under its own privacy policy.</li>
 </ul>
-<h2>How long we keep it</h2>
+<h2 id="how-long-we-keep-it">How long we keep it</h2>
 <p>We keep your game and account data while you play. If you stop playing, your data may be deleted after a long period of inactivity. You can ask us to delete it at any time.</p>
-<h2>Your rights</h2>
+<h2 id="your-rights">Your rights</h2>
 <p>Under the GDPR and similar laws, you can ask to access, correct or delete your data, object to its processing or ask for a copy of it. Write to <a href="mailto:juryjeremy@gmail.com">juryjeremy@gmail.com</a> with your Telegram username, and we will answer within one month. You can also file a complaint with your data protection authority (in France, the CNIL).</p>
-<h2>Children</h2>
+<h2 id="children">Children</h2>
 <p>Life Sim is intended for players aged 16 and older. It is a fictional game that includes mature themes such as crime, drugs and prison.</p>
-<h2>Changes</h2>
+<h2 id="changes">Changes</h2>
 <p>We may update this policy. The date at the top shows the latest version.</p>
 <div class="end">Questions? Write to <a href="mailto:juryjeremy@gmail.com">juryjeremy@gmail.com</a>. See also the <a href="https://jeremstyke.github.io/lifesim/terms/">Terms of Use</a>.</div>
 </article>
+</main>
+<footer class="foot"><div class="in">
+  <span>Made by Jeremstyke</span>
+  <a href="https://jeremstyke.github.io/">Home</a>
+  <a href="https://jeremstyke.github.io/lifesim/">Life Sim</a>
+  <a href="https://jeremstyke.github.io/chatpal/">ChatPal</a>
+  <a href="https://jeremstyke.github.io/lifesim/privacy/">Privacy</a>
+  <a href="https://jeremstyke.github.io/lifesim/terms/">Terms</a>
+  <a href="https://t.me/jeremstyke">Telegram channel</a>
+</div></footer>
 </body>
 </html>
